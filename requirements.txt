@@ -1,0 +1,12 @@
+PyQt6
+pandas
+openpyxl
+selenium
+webdriver-manager
+reportlab
+jdatetime
+arabic-reshaper
+python-bidi
+beautifulsoup4
+PyMuPDF
+pyinstaller
