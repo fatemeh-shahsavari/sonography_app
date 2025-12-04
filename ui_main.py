@@ -24,6 +24,7 @@ from history import HistoryDialog
 from shortcuts import ShortcutManager
 from category_filter import CategoryFilter
 from calculator import PriceCalculator
+from resource_manager import GHARDASH_FILE, APP_SETTINGS_FILE, COLOR_SETTINGS_FILE, COEFFICIENTS_FILE
 
 # ⭐ Import ماژولهای سوابق بیمار + جستجو
 try:
@@ -37,7 +38,7 @@ except ImportError:
 
 
 def normalize_text(txt):
-    """نرمالسازی متن فارسی"""
+    """نرمال سازی متن فارسی"""
     return txt.replace("ي", "ی").replace("ك", "ک").strip().lower()
 
 
@@ -46,7 +47,7 @@ class InsuranceApp(QWidget):
 
     def __init__(self, excel_path="all.xlsx"):
         super().__init__()
-        self.setWindowTitle("💊 نرمافزار تعرفه و فاکتور درمانی Pro")
+        self.setWindowTitle("💊 نرم افزار تعرفه و فاکتور درمانی Pro")
         self.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         self.resize(1100, 800)
 
@@ -58,7 +59,7 @@ class InsuranceApp(QWidget):
         self.company_name = "سونوگرافی تابش"
         self.address = "شیراز، خیابان مدرس، بالاتر از چهارراه پلنگی"
         self.phone = "07132655"
-        self.doctor_name = "شهرسواری رضا"
+        self.doctor_name = "شهسواری رضا"
         self.font_size = 10
         self.setFont(QFont("Vazirmatn", self.font_size))
 
@@ -101,8 +102,8 @@ class InsuranceApp(QWidget):
     def load_settings(self):
         """بارگذاری تنظیمات از فایل JSON"""
         try:
-            if os.path.exists('app_settings.json'):
-                with open('app_settings.json', 'r', encoding='utf-8') as f:
+            if os.path.exists(APP_SETTINGS_FILE):
+                with open(APP_SETTINGS_FILE, 'r', encoding='utf-8') as f:
                     settings = json.load(f)
                     self.company_name = settings.get('company_name', self.company_name)
                     self.address = settings.get('address', self.address)
@@ -369,7 +370,7 @@ class InsuranceApp(QWidget):
         return service_list
 
     def create_tariff_row(self):
-        """ساخت ردیف نوع تعرفه + بیحسی موضعی"""
+        """ساخت ردیف نوع تعرفه + بی حسی موضعی"""
         row = QHBoxLayout()
         row.setContentsMargins(10, 0, 10, 0)
 
@@ -378,7 +379,7 @@ class InsuranceApp(QWidget):
         self.type_combo.addItems(["بیمهشده", "خصوصی آزاد", "دولتی"])
         row.addWidget(self.type_combo)
 
-        # چکباکس بیحسی موضعی
+        # چک باکس بیحسی موضعی
         self.anesthesia_checkbox = QCheckBox("💉 بیحسی موضعی (+20%)")
         self.anesthesia_checkbox.setStyleSheet("font-weight: bold; color: #d32f2f;")
         self.anesthesia_checkbox.stateChanged.connect(self.calculate)
@@ -1054,8 +1055,8 @@ class InsuranceApp(QWidget):
     def apply_colors(self):
         """اعمال رنگها"""
         try:
-            if os.path.exists('color_settings.json'):
-                with open('color_settings.json', 'r') as f:
+            if os.path.exists(COLOR_SETTINGS_FILE):
+                with open(COLOR_SETTINGS_FILE, 'r') as f:
                     colors = json.load(f)
             else:
                 colors = {
