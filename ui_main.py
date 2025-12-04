@@ -24,7 +24,7 @@ from history import HistoryDialog
 from shortcuts import ShortcutManager
 from category_filter import CategoryFilter
 from calculator import PriceCalculator
-from resource_manager import GHARDASH_FILE, APP_SETTINGS_FILE, COLOR_SETTINGS_FILE, COEFFICIENTS_FILE
+from resource_manager import GHARDASH_FILE, APP_SETTINGS_FILE, COLOR_SETTINGS_FILE, COEFFICIENTS_FILE, ALL_FILE, PATIENT_RECORDS_FILE
 
 # ⭐ Import ماژولهای سوابق بیمار + جستجو
 try:
