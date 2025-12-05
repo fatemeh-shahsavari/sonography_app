@@ -47,7 +47,7 @@ class InsuranceApp(QWidget):
 
     def __init__(self, excel_path="all.xlsx"):
         super().__init__()
-        self.setWindowTitle("💊 نرمافزار تعرفه و فاکتور درمانی Pro")
+        self.setWindowTitle("💊 نرم افزار تعرفه و فاکتور درمانی Pro")
         self.setLayoutDirection(Qt.LayoutDirection.RightToLeft)
         self.resize(1100, 800)
 
@@ -59,7 +59,7 @@ class InsuranceApp(QWidget):
         self.company_name = "سونوگرافی تابش"
         self.address = "شیراز، خیابان مدرس، بالاتر از چهارراه پلنگی"
         self.phone = "07132655"
-        self.doctor_name = "شهرسواری رضا"
+        self.doctor_name = "شهسواری رضا"
         self.font_size = 10
         self.setFont(QFont("Vazirmatn", self.font_size))
 
@@ -256,7 +256,7 @@ class InsuranceApp(QWidget):
         layout.setContentsMargins(10, 5, 10, 5)
         layout.setSpacing(5)
 
-        label = QLabel("🗂️ دستهبندی سریع:")
+        label = QLabel("🗂️ دسته بندی سریع:")
         label.setStyleSheet("font-weight: bold; color: #0077b6; font-size: 12px;")
         layout.addWidget(label)
 
@@ -308,7 +308,7 @@ class InsuranceApp(QWidget):
         self.apply_filters()
 
     def apply_filters(self):
-        """اعمال فیلتر دستهبندی + جستجو با کد"""
+        """اعمال فیلتر دسته بندی + جستجو با کد"""
         search_text = normalize_text(self.search.text())
 
         for i in range(1, self.service_list.count()):
@@ -334,7 +334,7 @@ class InsuranceApp(QWidget):
             item.setHidden(not (category_match and search_match))
 
     def filter_list(self, text):
-        """جستجو با در نظر گرفتن دستهبندی"""
+        """جستجو با در نظر گرفتن دسته بندی"""
         self.apply_filters()
 
     def create_service_list(self):
@@ -376,11 +376,11 @@ class InsuranceApp(QWidget):
 
         row.addWidget(QLabel("👤 نوع تعرفه:"))
         self.type_combo = QComboBox()
-        self.type_combo.addItems(["بیمهشده", "خصوصی آزاد", "دولتی"])
+        self.type_combo.addItems(["بیمه شده", "خصوصی آزاد", "دولتی"])
         row.addWidget(self.type_combo)
 
         # چکباکس بیحسی موضعی
-        self.anesthesia_checkbox = QCheckBox("💉 بیحسی موضعی (+20%)")
+        self.anesthesia_checkbox = QCheckBox("💉 بی حسی موضعی (+20%)")
         self.anesthesia_checkbox.setStyleSheet("font-weight: bold; color: #d32f2f;")
         self.anesthesia_checkbox.stateChanged.connect(self.calculate)
         row.addWidget(self.anesthesia_checkbox)
