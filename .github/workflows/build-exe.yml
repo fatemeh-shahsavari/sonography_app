@@ -25,7 +25,15 @@ jobs:
 
     - name: Build Exe with PyInstaller
       run: |
-        pyinstaller --noconsole --onefile --name "ClinicApp_Pro" --add-data "ghardash.xlsx;." --add-data "coefficients.json;." --add-data "color_settings.json;." --hidden-import "babel.numbers" --hidden-import "PyQt6" main.py
+        pyinstaller --noconsole --onefile --name "ClinicApp_Pro" ^
+          --add-data "ghardash.xlsx;." ^
+          --add-data "all.xlsx;." ^
+          --add-data "coefficients.json;." ^
+          --add-data "color_settings.json;." ^
+          --hidden-import "babel.numbers" ^
+          --hidden-import "PyQt6" ^
+          --hidden-import "openpyxl" ^
+          main.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
