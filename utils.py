@@ -1,6 +1,23 @@
+import sys
+import os
 import pandas as pd
 import arabic_reshaper
 from bidi.algorithm import get_display
+
+
+def resource_path(relative_path):
+    """
+    آدرس فایل‌ها را هم در حالت عادی و هم در حالت exe پیدا می‌کند
+    این تابع برای بسته‌بندی PyInstaller ضروری است
+    """
+    try:
+        # وقتی برنامه exe شده است، فایل‌ها در این مسیر موقت هستند
+        base_path = sys._MEIPASS
+    except Exception:
+        # در حالت عادی (توسعه)
+        base_path = os.path.abspath(".")
+    
+    return os.path.join(base_path, relative_path)
 
 
 def int_from_string(s):
@@ -47,3 +64,4 @@ def wrap_text(text, max_chars=35):
     if current:
         lines.append(current)
     return "\n".join(lines)
+
