@@ -17,6 +17,7 @@ from PyQt6.QtGui import QFont, QColor, QShortcut, QKeySequence
 from PyQt6.QtCore import Qt
 
 from ui_settings import SettingsDialog
+from utils import resource_path
 from invoice import generate_invoice, direct_print
 from utils import int_from_string
 from features import FeatureManager
