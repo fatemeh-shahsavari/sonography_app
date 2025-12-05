@@ -9,34 +9,37 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v4
 
-    - name: Set up Python
+    - name: Set up Python 3.10
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
-    - name: Install dependencies
+    - name: Upgrade pip
       run: |
         python -m pip install --upgrade pip
+
+    - name: Install dependencies
+      run: |
         pip install -r requirements.txt
         pip install pyinstaller
 
-    - name: Build Exe with Data Files
+    - name: Build Exe with PyInstaller
       run: |
-        # دستور ساخت با اضافه کردن فایل‌های داده‌ای
-        # فرمت: --add-data "source_file;destination_folder"
-        # در ویندوز جداکننده ; است
-        
         pyinstaller --noconsole --onefile --name "ClinicApp_Pro" ^
           --add-data "ghardash.xlsx;." ^
           --add-data "coefficients.json;." ^
           --add-data "color_settings.json;." ^
+          --add-data "app_settings.json;." ^
+          --add-data "patient_records.json;." ^
           --hidden-import "babel.numbers" ^
+          --hidden-import "PyQt6" ^
           main.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ClinicApp-Windows
-        path: dist/*.exe
+        name: ClinicApp-Windows-Exe
+        path: dist/ClinicApp_Pro.exe
